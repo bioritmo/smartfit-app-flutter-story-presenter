@@ -245,6 +245,10 @@ class _FlutterStoryPresenterState extends State<FlutterStoryPresenter>
 
         _animationController?.duration = duration;
 
+        _animationController
+          ?..removeListener(animationListener)
+          ..removeStatusListener(animationStatusListener);
+
         _currentProgressAnimation =
             Tween<double>(begin: 0, end: 1).animate(_animationController!)
               ..addListener(animationListener)
@@ -289,6 +293,10 @@ class _FlutterStoryPresenterState extends State<FlutterStoryPresenter>
 
     _animationController?.duration =
         _currentVideoPlayer?.value.duration ?? currentItem.duration;
+
+    _animationController
+      ?..removeListener(animationListener)
+      ..removeStatusListener(animationStatusListener);
 
     _currentProgressAnimation =
         Tween<double>(begin: 0, end: 1).animate(_animationController!)
